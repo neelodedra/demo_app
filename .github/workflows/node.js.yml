@@ -25,10 +25,12 @@ jobs:
         run: npm run build
         
       - name: Create Package
-        run: zip -r AppPackage.zip build/
+        run: |
+          zip -r AppPackage.zip build/
+          mv AppPackge.zip ${{ github.workspace }}/AppPackage.zip
         
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v2
         with:
           name: AppPackage
-          path: AppPackage.zip
+          path: ${{ github.workspace }}/AppPackage.zip

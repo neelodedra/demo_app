@@ -29,3 +29,8 @@ jobs:
         with:
           name: AppPackage
           path: build/
+          
+      - name : SSH Connection
+        uses: webfactory/ssh-agent@0.5.0
+        with:
+          ssh-private-key: ${{ secrets.UNIX_SERVER }}

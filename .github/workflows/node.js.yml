@@ -24,11 +24,8 @@ jobs:
       - name: Build React App
         run: npm run build
         
-      - name: Create Package
-        run: zip -r AppPackage.zip build/
-        
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: AppPackage
-          path: AppPackage.zip
+          path: build/

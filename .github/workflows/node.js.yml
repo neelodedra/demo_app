@@ -34,3 +34,24 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+          
+      - name: Connect to EC2 server and perform deployment steps
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@52.90.137.27 << 'EOF'
+            # Clean the drop folder
+            rm -rf /react/drop_location/*
+            
+            # Clean the unzip folder
+            rm -rf /react/unzip_location/*
+
+            # Download the deployable zip package
+            scp /AppPackage.zip.zip ubuntu@52.90.137.27:/react/drop_location/
+
+            # Unzip the deployable package
+            unzip /react/drop_location/AppPackage.zip -d /react/unzip_location/
+            
+            # Clean the target folder
+            rm -rf /react/target_location/*
+
+            # Copy the unzipped content to the target folder
+            cp -R /react/unzip_location/* /react/target_location/

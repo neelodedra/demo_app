@@ -39,19 +39,19 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@52.90.137.27 << 'EOF'
             # Clean the drop folder
-            rm -rf /react/drop_location/*
+            rm -rf /home/ubuntu/react/drop_location/*
             
             # Clean the unzip folder
-            rm -rf /react/unzip_location/*
+            rm -rf /home/ubuntu/react/unzip_location/*
 
             # Download the deployable zip package
-            scp /AppPackage.zip.zip ubuntu@52.90.137.27:/react/drop_location/
+            scp /AppPackage.zip.zip ubuntu@52.90.137.27:/home/ubuntu/react/drop_location/
 
             # Unzip the deployable package
-            unzip /react/drop_location/AppPackage.zip -d /react/unzip_location/
+            unzip /home/ubuntu/react/drop_location/AppPackage.zip -d /home/ubuntu/react/unzip_location/
             
             # Clean the target folder
-            rm -rf /react/target_location/*
+            rm -rf /home/ubuntu/react/target_location/*
 
             # Copy the unzipped content to the target folder
-            cp -R /react/unzip_location/* /react/target_location/
+            cp -R /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/

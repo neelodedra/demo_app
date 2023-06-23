@@ -33,4 +33,4 @@ jobs:
       - name : SSH Connection
         uses: webfactory/ssh-agent@v0.8.0
         with:
-          ssh-private-key: ${{ secrets.UNIX_SERVER }}
+          ssh-private-key: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}

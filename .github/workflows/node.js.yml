@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: AppPackage
-          path: build/
+          path: buid/
           
   deployment:
     needs: build
@@ -44,7 +44,7 @@ jobs:
         uses: actions/download-artifact@v2.1.1
         with:
           name: AppPackage
-          path: build/
+          path: deploy_package/
           
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.10
@@ -60,10 +60,10 @@ jobs:
             rm -rf /home/ubuntu/react/unzip_location/*
 
             # Download the deployable zip package
-            scp /AppPackage.zip ubuntu@44.205.244.220:/home/ubuntu/react/drop_location/
+            scp ./deploy_package/AppPackage.zip ubuntu@44.205.244.220:/home/ubuntu/react/drop_location/
 
             # Unzip the deployable package
-            unzip /home/ubuntu/react/drop_location/AppPackage.zip -d /home/ubuntu/react/unzip_location/
+            7z x /home/ubuntu/react/drop_location/AppPackage.zip -o/home/ubuntu/react/unzip_location -y
             
             # Clean the target folder
             rm -rf /home/ubuntu/react/target_location/*

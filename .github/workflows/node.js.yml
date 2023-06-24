@@ -31,7 +31,7 @@ jobs:
           path: build/
           
       - name: Deploy to EC2
-        uses: appleboy/scp-action@v0.2.0
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: 35.175.150.253
           username: ubuntu

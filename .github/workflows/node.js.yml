@@ -29,27 +29,36 @@ jobs:
         with:
           name: AppPackage
           path: build/
+          
+      - name: Deploy to EC2
+        uses: appleboy/scp-action@v0.2.0
+        with:
+          host: 35.175.150.253
+          username: ubuntu
+          key: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+          source: build/
+          target: /home/ubuntu/react/target_location/
     
           
-      - name: Connect to EC2 server and perform deployment steps
-        run: |
-          echo "${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}" > private_key.pem && chmod 600 private_key.pem
-           ssh -o "StrictHostKeyChecking=no" -i "private_key.pem" ubuntu@ec2-35-175-150-253.compute-1.amazonaws.com '
-            # Clean the drop folder
-            rm -rf /home/ubuntu/react/drop_location/*
+#       - name: Connect to EC2 server and perform deployment steps
+#         run: |
+#           echo "${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}" > private_key.pem && chmod 600 private_key.pem
+#            ssh -o "StrictHostKeyChecking=no" -i "private_key.pem" ubuntu@ec2-35-175-150-253.compute-1.amazonaws.com '
+#             # Clean the drop folder
+#             rm -rf /home/ubuntu/react/drop_location/*
             
-            # Clean the unzip folder
-            rm -rf /home/ubuntu/react/unzip_location/*
+#             # Clean the unzip folder
+#             rm -rf /home/ubuntu/react/unzip_location/*
 
-            # Download the deployable zip package
-            scp /AppPackage.zip ubuntu@35.175.150.253:/home/ubuntu/react/drop_location/
+#             # Download the deployable zip package
+#             scp /AppPackage.zip ubuntu@35.175.150.253:/home/ubuntu/react/drop_location/
 
-            # Unzip the deployable package
-            unzip /home/ubuntu/react/drop_location/AppPackage.zip -d /home/ubuntu/react/unzip_location/
+#             # Unzip the deployable package
+#             unzip /home/ubuntu/react/drop_location/AppPackage.zip -d /home/ubuntu/react/unzip_location/
             
-            # Clean the target folder
-            rm -rf /home/ubuntu/react/target_location/*
+#             # Clean the target folder
+#             rm -rf /home/ubuntu/react/target_location/*
 
-            # Copy the unzipped content to the target folder
-            scp -r --exclude="*.zip" /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/
-          '
+#             # Copy the unzipped content to the target folder
+#             scp -r --exclude="*.zip" /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/
+#           '

@@ -34,7 +34,7 @@ jobs:
       - name: Connect to EC2 server and perform deployment steps
         run: |
           echo "${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@ec2-44-202-43-253.compute-1.amazonaws.com '
+           ssh -o "StrictHostKeyChecking=no" -i "private_key" ubuntu@ec2-35-175-150-253.compute-1.amazonaws.com '
             # Clean the drop folder
             rm -rf /home/ubuntu/react/drop_location/*
             
@@ -42,7 +42,7 @@ jobs:
             rm -rf /home/ubuntu/react/unzip_location/*
 
             # Download the deployable zip package
-            scp /AppPackage.zip.zip ubuntu@52.90.137.27:/home/ubuntu/react/drop_location/
+            scp /AppPackage.zip ubuntu@35.175.150.253:/home/ubuntu/react/drop_location/
 
             # Unzip the deployable package
             unzip /home/ubuntu/react/drop_location/AppPackage.zip -d /home/ubuntu/react/unzip_location/
@@ -51,5 +51,5 @@ jobs:
             rm -rf /home/ubuntu/react/target_location/*
 
             # Copy the unzipped content to the target folder
-            cp -R /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/
+            scp -r --exclude="*.zip" /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/
           '

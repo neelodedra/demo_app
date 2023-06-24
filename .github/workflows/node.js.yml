@@ -52,3 +52,4 @@ jobs:
 
             # Copy the unzipped content to the target folder
             cp -R /home/ubuntu/react/unzip_location/* /home/ubuntu/react/target_location/
+          '

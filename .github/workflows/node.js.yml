@@ -5,7 +5,7 @@ on:
     branches: main
     
 env:
-EC2_KEY: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+  EC2_KEY: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
     
 
 jobs:

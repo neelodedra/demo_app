@@ -4,8 +4,8 @@ on:
   push:
     branches: main
     
-env:
-  EC2_KEY: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+# env:
+#   EC2_KEY: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
     
 
 jobs:
@@ -51,7 +51,7 @@ jobs:
         with:
           host: 44.205.244.220
           username: ubuntu
-          key: ${{ env.EC2_KEY }}
+          key: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
           source: build/
           target: /home/ubuntu/react/target_location/
     

@@ -33,8 +33,8 @@ jobs:
           
       - name: Connect to EC2 server and perform deployment steps
         run: |
-          echo "${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}" > private_key && chmod 600 private_key
-           ssh -o "StrictHostKeyChecking=no" -i "private_key" ubuntu@ec2-35-175-150-253.compute-1.amazonaws.com '
+          echo "${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}" > private_key.pem && chmod 600 private_key.pem
+           ssh -o "StrictHostKeyChecking=no" -i "private_key.pem" ubuntu@ec2-35-175-150-253.compute-1.amazonaws.com '
             # Clean the drop folder
             rm -rf /home/ubuntu/react/drop_location/*
             

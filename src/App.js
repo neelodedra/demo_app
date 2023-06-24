@@ -7,19 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Hello World</h2>
-        <h3>Hello World</h3>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
-        <h4>Hello World</h4>
+        <h2>Neel Odedra</h2>
         <p>
-          Welcome All Buddies to Buddy Webinar!!!
+          Welcome All Buddies to My Web_App!!!
         </p>
       </header>
     </div>

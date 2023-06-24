@@ -3,6 +3,10 @@ name: Git Action Pipeline
 on:
   push:
     branches: main
+    
+env:
+EC2_KEY: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+    
 
 jobs:
   build:
@@ -24,18 +28,26 @@ jobs:
       - name: Build React App
         run: npm run build
         
+  package:
+    needs: build
+    runs-on: ubuntu-latest
+        
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: AppPackage
           path: build/
           
+  deployment:
+    needs: package
+    runs-on: ubuntu: latest
+          
       - name: Deploy to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: 35.175.150.253
+          host: 44.205.244.220
           username: ubuntu
-          key: ${{ secrets.GAMING_UNIX_SERVER_PRIVATE }}
+          key: ${{ env.EC2_KEY }}
           source: build/
           target: /home/ubuntu/react/target_location/
     

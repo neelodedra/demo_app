@@ -48,7 +48,7 @@ jobs:
           
       - name: List Directories
         run: |
-          find / -type d
+          ls -R
 
           
       - name: Deploy to EC2

@@ -66,7 +66,7 @@ jobs:
             rm -rf /home/ubuntu/react/unzip_location/*
 
             # Download the deployable zip package
-            scp ./deploy_package/AppPackage.zip ubuntu@34.201.134.52:/home/ubuntu/react/drop_location/
+            scp ./AppPackage.zip ubuntu@34.201.134.52:/home/ubuntu/react/drop_location/
 
             # Unzip the deployable package
             7z x /home/ubuntu/react/drop_location/AppPackage.zip -o/home/ubuntu/react/unzip_location -y

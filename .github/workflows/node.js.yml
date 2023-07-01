@@ -46,6 +46,11 @@ jobs:
           name: AppPackage
           path: deploy_package/
           
+      - name: List Directories
+        run: |
+          find / -type d
+
+          
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.10
         with:

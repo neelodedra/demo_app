@@ -48,7 +48,6 @@ jobs:
           
       - name: List Directories
         run: |
-          zip -r AppPackage.zip ./deploy_package/*
           ls -R
   
       - name: Transfer ZIP file
@@ -57,7 +56,7 @@ jobs:
           host: 54.174.2.247
           username: ubuntu
           key: ${{ env.EC2_KEY }}
-          source: "./deploy_package/AppPackage.zip"
+          source: "./deploy_package/*"
           target: "/home/ubuntu/react/drop_location/AppPackage.zip"
           
       - name: Deploy to EC2

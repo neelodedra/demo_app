@@ -50,12 +50,20 @@ jobs:
         run: |
           zip -r AppPackage.zip ./deploy_package/*
           ls -R
-
+  
+      - name: Transfer ZIP file
+        uses: appleboy/scp-action@master
+        with:
+          host: 54.174.2.247
+          username: ubuntu
+          key: ${{ env.EC2_KEY }}
+          source: "./deploy_package/AppPackage.zip"
+          target: "/home/ubuntu/react/drop_location/AppPackage.zip"
           
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: 34.201.134.52
+          host: 54.174.2.247
           username: ubuntu
           key: ${{ env.EC2_KEY }}
           script: |
@@ -64,9 +72,6 @@ jobs:
             
             # Clean the unzip folder
             rm -rf /home/ubuntu/react/unzip_location/*
-
-            # Download the deployable zip package
-            scp -o StrictHostKeyChecking=no ./AppPackage.zip ubuntu@34.201.134.52:/home/ubuntu/react/drop_location/
 
             # Unzip the deployable package
             7z x /home/ubuntu/react/drop_location/AppPackage.zip -o/home/ubuntu/react/unzip_location -y

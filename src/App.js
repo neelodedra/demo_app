@@ -9,7 +9,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Neel Odedra</h2>
         <p>
-          Welcome All Buddies to My Web_App!!!
+          Welcome to My React Web_App!!!
+          This is hosted on a AWS EC2 server via Nginx.
         </p>
       </header>
     </div>

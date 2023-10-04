@@ -25,6 +25,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
         
+      - name: NPM update
+        run: npm update
+
       - name: Build React App
         run: npm run build
         

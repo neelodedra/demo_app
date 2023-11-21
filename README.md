@@ -1,4 +1,4 @@
-# React CI/CD Pipeline with Git Actions
+# CI/CD Pipeline using Git Actions for React App
 
 Welcome to the Git repository for our React application's CI/CD pipeline! This pipeline is designed to automate the build and deployment process, allowing for quick and efficient deployments of our React application using Git Actions and an EC2 server hosting the application via Nginx.
 
